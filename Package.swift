@@ -17,7 +17,7 @@ let package = Package(
             targets: ["XlsxReaderWriter"]),
     ],
         dependencies: [
-        .package(url: "https://github.com/ZipArchive/ZipArchive", from: "2.4.2"),
+        .package(url: "https://github.com/ZipArchive/ZipArchive", .exact("2.3.0")),
     ],
     targets: [
         .target(
