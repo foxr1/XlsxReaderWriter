@@ -13,7 +13,7 @@ Add the SPM Dependency to your project:
 https://github.com/charlymr/XlsxReaderWriter
 ```
 
-<strong>WARNING: Use from version 2.4.3</strong>
+<strong>WARNING: Use from version 2.4.4</strong>
 
 Add the Library to your target.
 
@@ -69,7 +69,7 @@ Frome here, instead of `pod install` use `lbundle exec pod install`
 
 ### Method 1 The quick one: 
 
-Just change your pod to this. Please not the branch (here 2.4.3)
+Just change your pod to this. Please not the branch (here 2.4.4)
 It will change in the future and be merge in master, so keep checkign for update.
 ```
     ## Change in your Podfile.
