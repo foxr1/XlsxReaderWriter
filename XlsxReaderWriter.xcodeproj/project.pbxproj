@@ -678,7 +678,6 @@
 		8265BC302041C4BE004A2A7D /* XlsxReaderXMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XlsxReaderXMLDictionary.m; sourceTree = "<group>"; };
 		827A14DE26B7BC03008EB8C2 /* BRAHyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAHyperlink.m; sourceTree = "<group>"; };
 		827A14E326B7BC1F008EB8C2 /* BRAHyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAHyperlink.h; sourceTree = "<group>"; };
-		8289AA5C2041CD4A00E00603 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		8289AA5D2041D98C00E00603 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		8289AA632041D9F900E00603 /* XlsxReaderWriter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XlsxReaderWriter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8289AAD620420FFC00E00603 /* XlsxReaderWriter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XlsxReaderWriter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -751,7 +750,6 @@
 			isa = PBXGroup;
 			children = (
 				455542A31C48DE4D00EAB8FE /* XlsxReaderWriter.podspec */,
-				8289AA5C2041CD4A00E00603 /* Cartfile */,
 				455542A21C48DE4D00EAB8FE /* README.md */,
 				8289AA5D2041D98C00E00603 /* CHANGELOG.md */,
 				8287359926B5214B00C4DC60 /* Sources */,

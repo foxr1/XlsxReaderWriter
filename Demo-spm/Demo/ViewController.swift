@@ -35,7 +35,15 @@ class ViewController: UIViewController {
         
         third.text = worksheet.cell(forCellReference:   "B4").stringValue()
         
+        let paths: Array = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true) as Array
         
+        let fullPath: String = paths[0] + "/testSwiftOpenClose.xlsx"
+        try? FileManager.default.removeItem(at: URL(fileURLWithPath: fullPath))
+        odp.save(as: fullPath)
+        
+        print(fullPath)
+
+
     }
     
     

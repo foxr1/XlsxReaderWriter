@@ -2,7 +2,7 @@ target 'Demo' do
     
     platform :ios, '10.2'
     
-    pod 'XlsxReaderWriter', path: '../XlsxReaderWriter.podspec'
+    pod 'XlsxReaderWriter', '~> 2.5', :source => 'https://github.com/charlymr/XlsxReaderWriter-Podspecs.git'
     
     use_frameworks!
     
