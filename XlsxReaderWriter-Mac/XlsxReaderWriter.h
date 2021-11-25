@@ -35,6 +35,7 @@ FOUNDATION_EXPORT const unsigned char XlsxReaderWriter_macOSVersionString[];
 #import <XlsxReaderWriter/BRAComment.h>
 #import <XlsxReaderWriter/BRAComments.h>
 #import <XlsxReaderWriter/BRACalcChainCell.h>
+#import <XlsxReaderWriter/BRAHyperlink.h>
 
 #import <XlsxReaderWriter/XlsxReaderWriter-swift-bridge.h>
 #import <XlsxReaderWriter/XlsxReaderXMLDictionary.h>
