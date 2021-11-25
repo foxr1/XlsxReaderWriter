@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "XlsxReaderWriterSwiftTests"
-               BuildableName = "XlsxReaderWriterSwiftTests"
-               BlueprintName = "XlsxReaderWriterSwiftTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "XlsxReaderWriterTests"
-               BuildableName = "XlsxReaderWriterTests"
-               BlueprintName = "XlsxReaderWriterTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
