@@ -4,9 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 2.4.4
+## 2.5.0
+- Version 2.5 is introducing an important dependency changes
+	- The Library ZipArchive is https://github.com/samsoffes/ssziparchive), has been integrated and is use internally now.
+	- WARNING: ZipArchive is no longer a dependency of this project, if you depend on it, import it by another mean or 
+- Made XlsxReaderWriter dependencies less & self contain
 - Fixed #33 'Again errors when opening Excel files' 
-- ⚠️ ZipArchive was downgraded & fixed to version 2.3.0
 
 ## 2.4.3
 - Fixed Carthage! Thanks `ddaddy` fro the support!

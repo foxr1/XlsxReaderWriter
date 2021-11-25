@@ -13,7 +13,7 @@ Add the SPM Dependency to your project:
 https://github.com/charlymr/XlsxReaderWriter
 ```
 
-<strong>WARNING: Use from version 2.4.4</strong>
+<strong>WARNING: Use from version 2.5.0</strong>
 
 Add the Library to your target.
 
@@ -38,7 +38,7 @@ $ cd /path/to/MyProject
 $ touch CartFile
 $ edit CartFile
 
-github "charlymr/XlsxReaderWriter" ~> 2.4.3
+github "charlymr/XlsxReaderWriter" ~> 2.5.0
 ```
 
 Save and run:
@@ -69,11 +69,11 @@ Frome here, instead of `pod install` use `lbundle exec pod install`
 
 ### Method 1 The quick one: 
 
-Just change your pod to this. Please not the branch (here 2.4.4)
+Just change your pod to this. Please not the branch (here 2.5.0)
 It will change in the future and be merge in master, so keep checkign for update.
 ```
     ## Change in your Podfile.
-        pod 'XlsxReaderWriter', podspec: 'https://raw.githubusercontent.com/charlymr/XlsxReaderWriter/2.4.3/XlsxReaderWriter.podspec'
+        pod 'XlsxReaderWriter', podspec: 'https://raw.githubusercontent.com/charlymr/XlsxReaderWriter/2.5.0/XlsxReaderWriter.podspec'
 
 ```
 
@@ -82,7 +82,7 @@ It will change in the future and be merge in master, so keep checkign for update
 
 ```
     ## Change in your Podfile.
-    pod 'XlsxReaderWriter', '~> 2.4', :source => 'https://github.com/charlymr/XlsxReaderWriter-Podspecs.git'
+    pod 'XlsxReaderWriter', '~> 2.5', :source => 'https://github.com/charlymr/XlsxReaderWriter-Podspecs.git'
 ```
 
 
@@ -91,8 +91,8 @@ It will change in the future and be merge in master, so keep checkign for update
 ## Add this to your PodFile (at the top)
 source 'https://github.com/charlymr/XlsxReaderWriter-Podspecs.git' 
 
-## Then you can get the latest version 2.4 +
-    pod 'XlsxReaderWriter', '~> 2.4'
+## Then you can get the latest version 2.5 +
+    pod 'XlsxReaderWriter', '~> 2.5'
 ```
 
 
@@ -133,16 +133,12 @@ XlsxReaderWriter is able to:
 
 XlsxReaderWriter can't create a SpreadsheetML (XLSX) file from scratch. You have to open an existing file and modify it before saving it. Not really a problem: Create your file with Excel or Numbers with all the needed formatting (fills, borders, etc.) then include the file as a resource of your project.
 
-## Third parties
-
-Third parties are included in this repository, not linked as git submodules.
-
-* SSZipArchive: Compression/decompression library
-
 ## Third parties (Modified)
 
 * XMLDictionary: Converts XML to NSDictionary and NSDictionary to XML
 	The Library is [Deprecated](https://github.com/nicklockwood/XMLDictionary), for this reason the code has been integrated and refactored to avoid Name collision
+    
+* SSZipArchive is protected under the [MIT license](https://github.com/samsoffes/ssziparchive/raw/master/LICENSE) and our slightly modified version of [minizip-ng (formally minizip)](https://github.com/zlib-ng/minizip-ng) 3.0.2 is licensed under the [Zlib license](https://www.zlib.net/zlib_license.html).
 
 ## Linking (Objective-C)
 
@@ -510,7 +506,7 @@ Files have relationships, files are relationships... Have a look at this picture
 
 ## License	
 
-Copyright (c) 2017 Denis Martin-Bruillot (Trying to keep it working)
+Copyright (c) 2017-2021 Denis Martin-Bruillot (Trying to keep it working)
 
 Copyright (c) 2014-2016 Ren&eacute; BIGOT.
 
@@ -519,3 +515,5 @@ Copyright (c) 2015 Fabian Pahl (Cocoa pods integration).
 Copyright (c) 2016 Sam Hatchett (Mac port).
 
 The XlsxReaderWriter library should be accompanied by a LICENSE file. This file contains the license relevant to this distribution. If no license exists, please contact me [@renebigot](https://twitter.com/renebigot).
+
+SSZipArchive is protected under the [MIT license](https://github.com/samsoffes/ssziparchive/raw/master/LICENSE) and our slightly modified version of [minizip-ng (formally minizip)](https://github.com/zlib-ng/minizip-ng) 3.0.2 is licensed under the [Zlib license](https://www.zlib.net/zlib_license.html).
