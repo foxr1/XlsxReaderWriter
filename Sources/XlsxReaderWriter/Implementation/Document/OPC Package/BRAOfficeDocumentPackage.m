@@ -14,12 +14,7 @@
 #import <XlsxReaderWriter/BRARow.h>
 #import <XlsxReaderWriter/BRAColumn.h>
 #import <XlsxReaderWriter/BRACell.h>
-
-#if COCOAPODS
-@import SSZipArchive;
-#else
-@import ZipArchive;
-#endif
+#import "SSZipArchive.h"
 
 @interface BRAOfficeDocumentPackage ()
     @property (nonatomic, strong) BRAContentTypes   *  contentTypes;

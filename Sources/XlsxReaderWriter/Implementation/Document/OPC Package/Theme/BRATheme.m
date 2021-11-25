@@ -42,7 +42,7 @@
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    NSDictionary *colorsScheme = [[NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation] xlsxReaderDictionaryValueForKeyPath:@"a:themeElements.a:clrScheme"];
+    NSDictionary *colorsScheme = [[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation] xlsxReaderDictionaryValueForKeyPath:@"a:themeElements.a:clrScheme"];
     
     _colors = @[
                 [self colorNamed:S00 inColorScheme:colorsScheme],

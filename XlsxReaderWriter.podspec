@@ -10,15 +10,14 @@ Pod::Spec.new do |s|
   s.osx.deployment_target  = '10.9'
   s.tvos.deployment_target = '9.0'
   s.source             = { :git => "https://github.com/charlymr/XlsxReaderWriter.git", :tag => s.version.to_s }
-  s.source_files       = "Sources/XlsxReaderWriter/**/*.{h,m}"
+  s.source_files       = "Sources/XlsxReaderWriter/**/*.{h,m,c}"
   
   s.frameworks     	   = "Foundation"
   s.ios.frameworks     = "UIKit"
   s.osx.frameworks     = "Cocoa"
-  
-  s.requires_arc       = true
+  s.libraries          = 'z', 'iconv'
 
-  s.dependency "SSZipArchive", "2.3.0"
+  s.requires_arc       = true
 
 end
 

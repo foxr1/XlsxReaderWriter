@@ -16,20 +16,39 @@ let package = Package(
             name: "XlsxReaderWriter",
             targets: ["XlsxReaderWriter"]),
     ],
-        dependencies: [
-        .package(url: "https://github.com/ZipArchive/ZipArchive", .exact("2.3.0")),
-    ],
     targets: [
         .target(
             name: "XlsxReaderWriter",
-            dependencies: [
-                .product(name: "ZipArchive", package: "ZipArchive"),
-            ],
+            exclude: ["minizip/LICENSE"],
             publicHeadersPath: ".",
             cSettings: [
                 .headerSearchPath("XlsxReaderWriter"),
                 .headerSearchPath("."),
-              ]
-            )
+                .headerSearchPath("minizip"),
+            ],
+            linkerSettings: [
+                .linkedLibrary("z"),
+                .linkedLibrary("iconv")
+            ]),
+        .testTarget(
+            name: "XlsxReaderWriterSwiftTests",
+            dependencies: [
+                .target(name: "XlsxReaderWriter"),
+            ],
+            resources: [
+                .copy("Resources/photo-1415226481302-c40f24f4d45e.jpeg"),
+                .copy("Resources/testWorkbook.xlsx"),
+            ]),
+        .testTarget(
+            name: "XlsxReaderWriterTests",
+            dependencies: [
+                .target(name: "XlsxReaderWriter"),
+            ],
+            resources: [
+                .copy("Resources/photo-1415226481302-c40f24f4d45e.jpeg"),
+                .copy("Resources/testWorkbook.xlsx"),
+                .copy("Resources/testWorkbook2.xlsx"),
+                .copy("Resources/google.xlsx"),
+            ]),
     ]
 )

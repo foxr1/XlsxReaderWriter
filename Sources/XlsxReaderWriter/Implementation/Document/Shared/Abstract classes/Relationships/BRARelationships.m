@@ -18,7 +18,7 @@
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    NSDictionary *attributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
     
     _relationshipsArray = [[NSMutableArray alloc] init];
     

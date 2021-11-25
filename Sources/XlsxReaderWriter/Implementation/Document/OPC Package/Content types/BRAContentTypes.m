@@ -8,17 +8,17 @@
 
 #import <XlsxReaderWriter/BRAContentTypes.h>
 #import <XlsxReaderWriter/BRARelationship.h>
-#import <XlsxReaderWriter/NSDictionary+OpenXMLDictionaryParser.h>
 #import <XlsxReaderWriter/BRAContentTypesDefaultExtension.h>
 #import <XlsxReaderWriter/BRAContentTypesOverride.h>
 #import <XlsxReaderWriter/NSDictionary+OpenXmlString.h>
+#import <XlsxReaderWriter/XlsxReaderXMLDictionary.h>
 
 @implementation BRAContentTypes
 
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    NSDictionary *attributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
     
     NSMutableArray *defaultExtensions = [[NSMutableArray alloc] init];
     for (NSDictionary *attributesDict in attributes[@"Default"]) {

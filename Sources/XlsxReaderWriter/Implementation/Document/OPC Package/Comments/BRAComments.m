@@ -30,7 +30,7 @@
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    NSDictionary *openXmlAttributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    NSDictionary *openXmlAttributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
     
     NSArray *commentsArray = [openXmlAttributes xlsxReaderArrayValueForKeyPath:@"commentList.comment"];
     
@@ -131,7 +131,7 @@
 }
 
 - (NSString *)xmlRepresentation {
-    NSMutableDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
+    NSMutableDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
     
     NSString *xmlHeader = @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n";
     

@@ -45,7 +45,7 @@
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    NSMutableDictionary *openXmlAttributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableDeepCopy;
+    NSMutableDictionary *openXmlAttributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableDeepCopy;
     
     //Get dimension
     NSString *rangeReference = [openXmlAttributes valueForKeyPath:@"dimension._ref"];
@@ -134,7 +134,7 @@
 #pragma mark - 
 
 - (NSString *)xmlRepresentation {
-    NSMutableDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
+    NSMutableDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
     
     NSString *xmlHeader = @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n";
 

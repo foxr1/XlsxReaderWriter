@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 BRAE. All rights reserved.
 //
 
-import UIKit
 import XCTest
+import XlsxReaderWriter
 
 class SwiftTestCase: XCTestCase {
     
-    let odp: BRAOfficeDocumentPackage = BRAOfficeDocumentPackage.open(Bundle(for: SwiftTestCase.self).path(forResource: "testWorkbook", ofType: "xlsx"))
+    let odp: BRAOfficeDocumentPackage = BRAOfficeDocumentPackage.open(Bundle.module.path(forResource: "testWorkbook", ofType: "xlsx"))
     
     func getDocumentsDirectory() -> URL {
         // find all possible documents directories for this user
@@ -52,10 +52,14 @@ class SwiftTestCase: XCTestCase {
         let worksheet: BRAWorksheet = odp.workbook.worksheets[0] as! BRAWorksheet;
         XCTAssertNotNil(worksheet, "Worksheet should not be nil")
 
-        let filePath = Bundle(for: self.classForCoder).path(forResource: "photo-1415226481302-c40f24f4d45e", ofType: "jpeg")!
+        let filePath = Bundle.module.path(forResource: "photo-1415226481302-c40f24f4d45e", ofType: "jpeg")!
         let fileURL = URL(fileURLWithPath: filePath)
         let data = try? Data(contentsOf: fileURL)
+        #if os(macOS)
+        let image = NSImage(data: data!)
+        #else
         let image = UIImage(data: data!)
+        #endif
         
         let size = CGSize(width: image!.size.width * 6350, height: image!.size.height * 6350)
         let drawing = worksheet.add(image, inCellReferenced: "H2",

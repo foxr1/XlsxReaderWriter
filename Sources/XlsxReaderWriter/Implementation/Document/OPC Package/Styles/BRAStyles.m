@@ -15,6 +15,7 @@
 #import <XlsxReaderWriter/NSDictionary+DeepCopy.h>
 #import <XlsxReaderWriter/NSDictionary+OpenXmlString.h>
 #import <XlsxReaderWriter/NativeFont+BoldItalic.h>
+#import <XlsxReaderWriter/NativeColor+OpenXML.h>
 
 @implementation BRAStyles
 
@@ -33,7 +34,7 @@
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    _attributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    _attributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
     
     //Read indexed colors
     NSMutableArray *indexedColors = [BRANativeColor defaultIndexedColors].mutableCopy;
@@ -315,7 +316,7 @@
 #pragma mark -
 
 - (NSString *)xmlRepresentation {
-    NSMutableDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableDeepCopy;
+    NSMutableDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableDeepCopy;
     
     NSString *xmlHeader = @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n";
     

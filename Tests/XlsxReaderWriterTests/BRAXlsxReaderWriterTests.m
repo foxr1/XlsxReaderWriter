@@ -6,23 +6,8 @@
 //  Copyright (c) 2013 René Bigot. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import <stdio.h>
-
-#import <XlsxReaderWriter/BRAOfficeDocumentPackage.h>
-#import <XlsxReaderWriter/BRAOfficeDocument.h>
-#import <XlsxReaderWriter/BRAWorksheetDrawing.h>
-#import <XlsxReaderWriter/BRAWorksheet.h>
-#import <XlsxReaderWriter/BRANumberFormat.h>
-#import <XlsxReaderWriter/BRARelationships.h>
-#import <XlsxReaderWriter/BRADrawing.h>
-#import <XlsxReaderWriter/BRAImage.h>
-#import <XlsxReaderWriter/BRAColumn.h>
-#import <XlsxReaderWriter/BRARow.h>
-#import <XlsxReaderWriter/BRACell.h>
-#import <XlsxReaderWriter/BRAVmlDrawing.h>
-#import <XlsxReaderWriter/BRASheet.h>
-#import <XlsxReaderWriter/BRAStyles.h>
+@import XCTest;
+@import XlsxReaderWriter;
 
 #define NUMBER_FORMAT(X) [[BRANumberFormat alloc] initWithOpenXmlAttributes:@{@"_formatCode": X} inStyles:self.spreadsheet.workbook.styles]
 
@@ -30,6 +15,11 @@
 
 @property (strong, readwrite) BRAOfficeDocumentPackage *spreadsheet;
 @property (strong, readwrite) BRAOfficeDocumentPackage *spreadsheet2;
+#if TARGET_OS_IPHONE
+@property (strong, readwrite) UIImage *image;
+#else
+@property (strong, readwrite) NSImage *image;
+#endif
 
 @end
 
@@ -42,12 +32,17 @@
 - (void)setUp {
     [super setUp];
 
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
     
-    NSString *documentPath2 = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook2" ofType:@"xlsx"];
+    NSString *documentPath2 = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook2" ofType:@"xlsx"];
     self.spreadsheet2 = [BRAOfficeDocumentPackage open:documentPath2];
 
+#if TARGET_OS_IPHONE
+    self.image = [UIImage imageWithContentsOfFile:[SWIFTPM_MODULE_BUNDLE pathForResource:@"photo-1415226481302-c40f24f4d45e" ofType:@"jpeg"]];
+#else
+    self.image = [SWIFTPM_MODULE_BUNDLE imageForResource:@"photo-1415226481302-c40f24f4d45e.jpeg"];
+#endif
 }
 
 + (void)tearDown {
@@ -57,7 +52,7 @@
 }
 
 - (void)testHyperlink {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"google" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"google" ofType:@"xlsx"];
     BRAOfficeDocumentPackage *spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
     XCTAssertNotNil(spreadsheet, @"Spreadsheet document can't be read");
     BRAWorksheet *worksheet = spreadsheet.workbook.worksheets[0];
@@ -91,7 +86,7 @@
     paragraphStyle.alignment = NSTextAlignmentLeft;
 
     NSDictionary *defaultAttributes = @{
-                                        NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0 blue:0 alpha:1],
+                                        NSForegroundColorAttributeName: [BRANativeColor colorWithRed:0 green:0 blue:0 alpha:1],
                                         NSParagraphStyleAttributeName: paragraphStyle
                                         };
     
@@ -118,7 +113,7 @@
     paragraphStyle.alignment = NSTextAlignmentLeft;
     
     NSDictionary *defaultAttributes = @{
-                                        NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0 blue:0 alpha:1],
+                                        NSForegroundColorAttributeName: [BRANativeColor colorWithRed:0 green:0 blue:0 alpha:1],
                                         NSParagraphStyleAttributeName: paragraphStyle
                                         };
     
@@ -154,7 +149,7 @@
     paragraphStyle.alignment = NSTextAlignmentLeft;
 
     NSDictionary *defaultAttributes = @{
-                                        NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0 blue:0 alpha:1],
+                                        NSForegroundColorAttributeName: [BRANativeColor colorWithRed:0 green:0 blue:0 alpha:1],
                                         NSParagraphStyleAttributeName: paragraphStyle
                                         };
 
@@ -165,7 +160,7 @@
     resultAttributedString = [[NSAttributedString alloc] initWithString:@"shared string with " attributes:defaultAttributes].mutableCopy;
     [resultAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"color"
                                                                                    attributes:@{
-                                                                                                NSForegroundColorAttributeName: [UIColor colorWithHexString:@"FC0507"],
+                                                                                                NSForegroundColorAttributeName: [BRANativeColor colorWithHexString:@"FC0507"],
                                                                                                 NSParagraphStyleAttributeName: paragraphStyle
                                                                                                 }]];
     
@@ -193,7 +188,7 @@
 - (void)testThemeColor {
     BRAWorksheet *worksheet = self.spreadsheet.workbook.worksheets[0];
     
-    XCTAssertEqualObjects([[worksheet cellForCellReference:@"F3"] cellFillColor], [UIColor colorWithRed:247./255. green:150./255. blue:70./255. alpha:1]);
+    XCTAssertEqualObjects([[worksheet cellForCellReference:@"F3"] cellFillColor], [BRANativeColor colorWithRed:247./255. green:150./255. blue:70./255. alpha:1]);
 }
 
 - (void)testNumberFormats {
@@ -268,7 +263,7 @@
                                                            effectiveRange:NULL], nil);
     XCTAssertEqualObjects([[numberFormat formatNumber:-1241.999] attribute:NSForegroundColorAttributeName
                                                                   atIndex:0
-                                                           effectiveRange:NULL], [UIColor redColor]);
+                                                           effectiveRange:NULL], [BRANativeColor redColor]);
     
     numberFormat = NUMBER_FORMAT(@"0%");
     XCTAssertEqualObjects([[numberFormat formatNumber:.5] string], @"50%");
@@ -346,7 +341,7 @@
 }
 
 - (void)testAdd1Row {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     
     [self measureBlock:^{
         self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
@@ -365,7 +360,7 @@
 }
 
 - (void)testAdd1000Rows {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     
     [self measureBlock:^{
         self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
@@ -384,7 +379,7 @@
 }
 
 - (void)testRemove1Row {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     
     [self measureBlock:^{
         self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
@@ -403,7 +398,7 @@
 }
 
 - (void)testRemove1RowAndKeepMergeCellContent {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     
     [self measureBlock:^{
         self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
@@ -422,7 +417,7 @@
 }
 
 - (void)testRemove1RowAboveAMergedCellAndKeepMergeCellContent {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     
     [self measureBlock:^{
         self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
@@ -440,7 +435,7 @@
 }
 
 - (void)testRemove4Rows {
-    NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook" ofType:@"xlsx"];
+    NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook" ofType:@"xlsx"];
     
     [self measureBlock:^{
         self.spreadsheet = [BRAOfficeDocumentPackage open:documentPath];
@@ -463,7 +458,7 @@
     paragraphStyle.alignment = NSTextAlignmentLeft;
     NSDictionary *stringAttributes = @{
                                        NSParagraphStyleAttributeName: paragraphStyle,
-                                       NSForegroundColorAttributeName: [UIColor greenColor]
+                                       NSForegroundColorAttributeName: [BRANativeColor greenColor]
                                        };
     
     BRAWorksheet *worksheet = self.spreadsheet.workbook.worksheets[0];
@@ -481,7 +476,7 @@
     
     [[worksheet cellForCellReference:@"Y24" shouldCreate:YES] setStringValue:@"FOO / BAR"];
     [[worksheet cellForCellReference:@"Z24" shouldCreate:YES]
-     setAttributedStringValue:[[NSAttributedString alloc] initWithString:@"GREEN" attributes:@{NSForegroundColorAttributeName: [UIColor greenColor]}]];
+     setAttributedStringValue:[[NSAttributedString alloc] initWithString:@"GREEN" attributes:@{NSForegroundColorAttributeName: [BRANativeColor greenColor]}]];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"MM/dd/yyyy";
@@ -637,9 +632,7 @@
     //Need to test more things. Only used to generate an XLSX file
     BRAWorksheet *worksheet = self.spreadsheet.workbook.worksheets[0];
     
-    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"photo-1415226481302-c40f24f4d45e" ofType:@"jpeg"]];
-
-    BRAWorksheetDrawing *drawing = [worksheet addImage:image
+    BRAWorksheetDrawing *drawing = [worksheet addImage:self.image
                                       inCellReferenced:@"G2"
                                             withOffset:CGPointZero
                                                   size:CGSizeMake(400. * 12700, 300 * 12700)
@@ -654,11 +647,10 @@
     //Need to test more things. Only used to generate an XLSX file
     BRAWorksheet *worksheet = self.spreadsheet.workbook.worksheets[0];
     
-    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"photo-1415226481302-c40f24f4d45e" ofType:@"jpeg"]];
-    BRAWorksheetDrawing *drawing = [worksheet addImage:image betweenCellsReferenced:@"G2" and:@"I10"
-                                            withInsets:UIEdgeInsetsZero preserveTransparency:NO];
+    BRAWorksheetDrawing *drawing = [worksheet addImage:self.image betweenCellsReferenced:@"G2" and:@"I10"
+                                            withInsets:BRANativeEdgeInsetsZero preserveTransparency:NO];
     
-    drawing.insets = UIEdgeInsetsMake(0., 0., .5, .5);
+    drawing.insets = BRANativeEdgeInsetsMake(0., 0., .5, .5);
     
     XCTAssertNotNil(drawing, @"No drawing created");
     
@@ -670,8 +662,7 @@
     //Need to test more things. Only used to generate an XLSX file
     BRAWorksheet *worksheet = self.spreadsheet.workbook.worksheets[0];
     
-    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"photo-1415226481302-c40f24f4d45e" ofType:@"jpeg"]];
-    BRAWorksheetDrawing *drawing = [worksheet addImage:image inFrame:CGRectMake(10. * 12700., 10. * 12700., 1024. * 12700., 768. * 12700.)
+    BRAWorksheetDrawing *drawing = [worksheet addImage:self.image inFrame:CGRectMake(10. * 12700., 10. * 12700., 1024. * 12700., 768. * 12700.)
                                   preserveTransparency:NO];
     
     XCTAssertNotNil(drawing, @"No drawing created");
@@ -682,9 +673,9 @@
 - (void)testFillColor {
     BRAWorksheet *worksheet = self.spreadsheet.workbook.worksheets[0];
 
-    XCTAssertEqualObjects([[worksheet cellForCellReference:@"A35"] cellFillColor], [UIColor redColor], @"A35 fill should be plain red");
+    XCTAssertEqualObjects([[worksheet cellForCellReference:@"A35"] cellFillColor], [BRANativeColor redColor], @"A35 fill should be plain red");
     
-    [[worksheet cellForCellReference:@"A36" shouldCreate:YES] setCellFillWithForegroundColor:[UIColor yellowColor] backgroundColor:[UIColor blackColor] andPatternType:kBRACellFillPatternTypeDarkTrellis];
+    [[worksheet cellForCellReference:@"A36" shouldCreate:YES] setCellFillWithForegroundColor:[BRANativeColor yellowColor] backgroundColor:[BRANativeColor blackColor] andPatternType:kBRACellFillPatternTypeDarkTrellis];
 
     [self.spreadsheet saveAs:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"testFillColor.xlsx"]];
 }
@@ -726,7 +717,7 @@
 - (void)testConcurencySpreadsheetOpenDocument {
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *documentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"testWorkbook2" ofType:@"xlsx"];
+        NSString *documentPath = [SWIFTPM_MODULE_BUNDLE pathForResource:@"testWorkbook2" ofType:@"xlsx"];
         BRAOfficeDocumentPackage *doc1 = [BRAOfficeDocumentPackage open:documentPath];
         BRAWorksheet *worksheet = doc1.workbook.worksheets[0];
         [worksheet removeRow:18];

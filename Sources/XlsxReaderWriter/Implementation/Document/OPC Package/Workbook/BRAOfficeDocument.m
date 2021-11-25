@@ -51,7 +51,7 @@
     
     //Sheets
     NSMutableArray *sheets = [[NSMutableArray alloc] init];
-    NSDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    NSDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
     
     for (NSDictionary *openXmlAttributes in [dictionaryRepresentation xlsxReaderArrayValueForKeyPath:@"sheets.sheet"]) {
         [sheets addObject:[[BRASheet alloc] initWithOpenXmlAttributes:openXmlAttributes]];
@@ -175,7 +175,7 @@
 }
 
 - (NSString *)xmlRepresentation {
-    NSMutableDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
+    NSMutableDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
     
     NSString *xmlHeader = @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n";
 

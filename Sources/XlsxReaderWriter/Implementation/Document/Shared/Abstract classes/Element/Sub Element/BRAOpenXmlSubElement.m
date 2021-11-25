@@ -13,7 +13,6 @@
 #import <XlsxReaderWriter/NativeFont+BoldItalic.h>
 #import <XlsxReaderWriter/NSDictionary+DeepCopy.h>
 #import <XlsxReaderWriter/NSDictionary+OpenXmlString.h>
-#import <XlsxReaderWriter/NSDictionary+OpenXMLDictionaryParser.h>
 #import <XlsxReaderWriter/XlsxReaderXMLDictionary.h>
 
 @implementation BRAOpenXmlSubElement

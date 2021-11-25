@@ -30,7 +30,7 @@
 - (void)loadXmlContents {
     [super loadXmlContents];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    NSDictionary *attributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
 
     NSArray *siArray = [attributes xlsxReaderArrayValueForKeyPath:@"si"];
     
@@ -64,7 +64,7 @@
 #pragma mark -
 
 - (NSString *)xmlRepresentation {
-    NSMutableDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableDeepCopy;
+    NSMutableDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableDeepCopy;
     
     NSString *xmlHeader = @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n";
     

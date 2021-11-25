@@ -20,6 +20,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "XlsxReaderWriter_XlsxReaderWriterSwiftTests"
+               BuildableName = "XlsxReaderWriter_XlsxReaderWriterSwiftTests"
+               BlueprintName = "XlsxReaderWriter_XlsxReaderWriterSwiftTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -35,6 +49,16 @@
                BlueprintIdentifier = "XlsxReaderWriterTests"
                BuildableName = "XlsxReaderWriterTests"
                BlueprintName = "XlsxReaderWriterTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "XlsxReaderWriterSwiftTests"
+               BuildableName = "XlsxReaderWriterSwiftTests"
+               BlueprintName = "XlsxReaderWriterSwiftTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

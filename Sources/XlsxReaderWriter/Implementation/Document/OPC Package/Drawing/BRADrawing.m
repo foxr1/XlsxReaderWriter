@@ -47,7 +47,7 @@
 
 - (void)addWorksheetDrawingsForAnchorType:(NSString *)anchorType {
     NSMutableArray *worksheetDrawings = [_worksheetDrawings mutableCopy];
-    NSDictionary *attributes = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation];
+    NSDictionary *attributes =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation];
 
     NSArray *wsDrArray = [attributes xlsxReaderArrayValueForKeyPath:anchorType];
     
@@ -241,7 +241,7 @@
 #pragma mark -
 
 - (NSString *)xmlRepresentation {
-    NSMutableDictionary *dictionaryRepresentation = [NSDictionary dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
+    NSMutableDictionary *dictionaryRepresentation =[XlsxReaderXMLDictionaryParser dictionaryWithOpenXmlString:_xmlRepresentation].mutableCopy;
     
     NSString *xmlHeader = @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n";
 

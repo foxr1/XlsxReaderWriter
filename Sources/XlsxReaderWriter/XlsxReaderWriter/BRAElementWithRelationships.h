@@ -8,7 +8,6 @@
 
 @import Foundation;
 #import <XlsxReaderWriter/BRAOpenXmlElement.h>
-#import <XlsxReaderWriter/NSDictionary+OpenXMLDictionaryParser.h>
 
 @class BRARelationships;
 

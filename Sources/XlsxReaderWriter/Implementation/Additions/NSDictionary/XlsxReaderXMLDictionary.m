@@ -50,6 +50,17 @@
 @end
 
 
+@implementation XlsxReaderXMLDictionaryParser (OpenXMLDictionaryParser)
+
++ (NSDictionary *)dictionaryWithOpenXmlString:(NSString *)string {
+    XlsxReaderXMLDictionaryParser *dictionaryParser = [[XlsxReaderXMLDictionaryParser sharedInstance] copy];
+    [dictionaryParser setStripEmptyNodes:NO];
+    [dictionaryParser setTrimWhiteSpace:NO];
+    return [dictionaryParser dictionaryWithString:string];
+}
+
+@end
+
 @implementation XlsxReaderXMLDictionaryParser
 
 + (XlsxReaderXMLDictionaryParser *)sharedInstance

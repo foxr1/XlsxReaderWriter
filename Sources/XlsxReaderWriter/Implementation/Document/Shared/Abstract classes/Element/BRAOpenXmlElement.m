@@ -9,7 +9,6 @@
 #import <XlsxReaderWriter/BRAOpenXmlElement.h>
 #import <XlsxReaderWriter/BRAOfficeDocumentPackage.h>
 #import <XlsxReaderWriter/BRARelationship.h>
-#import <XlsxReaderWriter/NSDictionary+OpenXMLDictionaryParser.h>
 
 @implementation BRAOpenXmlElement
 

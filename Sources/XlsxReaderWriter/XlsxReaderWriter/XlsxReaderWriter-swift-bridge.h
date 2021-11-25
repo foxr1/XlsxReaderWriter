@@ -42,5 +42,4 @@
 #import <XlsxReaderWriter/NativeColor+OpenXML.h>
 #import <XlsxReaderWriter/NativeColor+HTML.h>
 #import <XlsxReaderWriter/NSDictionary+OpenXmlString.h>
-#import <XlsxReaderWriter/NSDictionary+OpenXMLDictionaryParser.h>
 #import <XlsxReaderWriter/NSDictionary+DeepCopy.h>

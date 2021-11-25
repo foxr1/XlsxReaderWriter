@@ -108,6 +108,12 @@ static NSString *const XlsxReaderXMLDictionaryAttributePrefix = @"_";
 
 @end
 
+@interface XlsxReaderXMLDictionaryParser (OpenXMLDictionaryParser)
+
++ (NSDictionary *)dictionaryWithOpenXmlString:(NSString *)string;
+
+@end
+
 
 NS_ASSUME_NONNULL_END
 
