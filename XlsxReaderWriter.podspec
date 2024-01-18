@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '9.0'
   s.osx.deployment_target  = '10.9'
   s.tvos.deployment_target = '9.0'
-  s.source             = { :git => "https://github.com/foxr1/XlsxReaderWriter.git }
+  s.source             = { :git => "https://github.com/foxr1/XlsxReaderWriter.git" }
   s.source_files       = "Sources/XlsxReaderWriter/**/*.{h,m,c}"
   
   s.frameworks     	   = "Foundation"
